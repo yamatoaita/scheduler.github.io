@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <link rel="stylesheet" href="adjuster.css">
+        <title>匿名で調整君</title>
+
+    </head>
+
+    <body>      
+        <div class="title">匿名で調整君</div>
+        <div id="page_index">ref</div>
+        <div class="explain" id="explain">日程照合したい名前を入力してください。</div>
+        <div class="entry_place">
+            <select class="select" id="entry"></select>
+            <input type="button" class="entrybtn" id="entrybtn" value="確定">
+           
+        </div>
+        <div class="month_adjuster">
+            <div class="month" id="month">20xx年x月</div>
+            <div class="before" id="before">＜　前の月へ</div>
+            <div class="next" id="next">次の月へ　＞</div>
+        </div>
+        
+        <div class="scrolled_table">
+            <table class="table01">
+                <thead class="headers">
+                    <tr>
+                        <th class="th_headers" id="blank_header"></th>
+                        <th class="th_headers" id="th_morning">朝<br>9~11</th>
+                        <th class="th_headers" id="th_day">昼<br>12~17</th>
+                        <th class="th_headers" id="th_night">夜<br>18~21</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="data_rows" id="data_tr1">
+                        <th class="row_th" id="row_th1">月<br>1</th>
+                        <td id="row1_morning" class="morning_cells"></td>
+                        <td id="row1_day" class="day_cells"></td>
+                        <td id="row1_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr2">
+                        <th class="row_th" id="row_th2">火<br>2</th>
+                        <td id="row2_morning" class="morning_cells"></td>
+                        <td id="row2_day" class="day_cells"></td>
+                        <td id="row2_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr3">
+                        <th class="row_th" id="row_th3">水<br>3</th>
+                        <td id="row3_morning" class="morning_cells"></td>
+                        <td id="row3_day" class="day_cells"></td>
+                        <td id="row3_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr4">
+                        <th class="row_th" id="row_th4">木<br>4</th>
+                        <td id="row4_morning" class="morning_cells"></td>
+                        <td id="row4_day" class="day_cells"></td>
+                        <td id="row4_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr5">
+                        <th class="row_th" id="row_th5">金<br>5</th>
+                        <td id="row5_morning" class="morning_cells"></td>
+                        <td id="row5_day" class="day_cells"></td>
+                        <td id="row5_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr6">
+                        <th class="row_th" id="row_th6">土<br>6</th>
+                        <td id="row6_morning" class="morning_cells"></td>
+                        <td id="row6_day" class="day_cells"></td>
+                        <td id="row6_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr7">
+                        <th class="row_th" id="row_th7">日<br>7</th>
+                        <td id="row7_morning" class="morning_cells"></td>
+                        <td id="row7_day" class="day_cells"></td>
+                        <td id="row7_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr8">
+                        <th class="row_th" id="row_th8">月<br>8</th>
+                        <td id="row8_morning" class="morning_cells"></td>
+                        <td id="row8_day" class="day_cells"></td>
+                        <td id="row8_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr9">
+                        <th class="row_th" id="row_th9">火<br>9</th>
+                        <td id="row9_morning" class="morning_cells"></td>
+                        <td id="row9_day" class="day_cells"></td>
+                        <td id="row9_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr10">
+                        <th class="row_th" id="row_th10">水<br>10</th>
+                        <td id="row10_morning" class="morning_cells"></td>
+                        <td id="row10_day" class="day_cells"></td>
+                        <td id="row10_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr11">
+                        <th class="row_th" id="row_th11">木<br>11</th>
+                        <td id="row11_morning" class="morning_cells"></td>
+                        <td id="row11_day" class="day_cells"></td>
+                        <td id="row11_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr12">
+                        <th class="row_th" id="row_th12">金<br>12</th>
+                        <td id="row12_morning" class="morning_cells"></td>
+                        <td id="row12_day" class="day_cells"></td>
+                        <td id="row12_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr13">
+                        <th class="row_th" id="row_th13">土<br>13</th>
+                        <td id="row13_morning" class="morning_cells"></td>
+                        <td id="row13_day" class="day_cells"></td>
+                        <td id="row13_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr14">
+                        <th class="row_th" id="row_th14">日<br>14</th>
+                        <td id="row14_morning" class="morning_cells"></td>
+                        <td id="row14_day" class="day_cells"></td>
+                        <td id="row14_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr15">
+                        <th class="row_th" id="row_th15">月<br>15</th>
+                        <td id="row15_morning" class="morning_cells"></td>
+                        <td id="row15_day" class="day_cells"></td>
+                        <td id="row15_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr16">
+                        <th class="row_th" id="row_th16">日<br>16</th>
+                        <td id="row16_morning" class="morning_cells"></td>
+                        <td id="row16_day" class="day_cells"></td>
+                        <td id="row16_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr17">
+                        <th class="row_th" id="row_th17">日<br>17</th>
+                        <td id="row17_morning" class="morning_cells"></td>
+                        <td id="row17_day" class="day_cells"></td>
+                        <td id="row17_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr18">
+                        <th class="row_th" id="row_th18">日<br>18</th>
+                        <td id="row18_morning" class="morning_cells"></td>
+                        <td id="row18_day" class="day_cells"></td>
+                        <td id="row18_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr19">
+                        <th class="row_th" id="row_th19">日<br>19</th>
+                        <td id="row19_morning" class="morning_cells"></td>
+                        <td id="row19_day" class="day_cells"></td>
+                        <td id="row19_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr20">
+                        <th class="row_th" id="row_th20">日<br>20</th>
+                        <td id="row20_morning" class="morning_cells"></td>
+                        <td id="row20_day" class="day_cells"></td>
+                        <td id="row20_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr21">
+                        <th class="row_th" id="row_th21">日<br>21</th>
+                        <td id="row21_morning" class="morning_cells"></td>
+                        <td id="row21_day" class="day_cells"></td>
+                        <td id="row21_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr22">
+                        <th class="row_th" id="row_th22">日<br>22</th>
+                        <td id="row22_morning" class="morning_cells"></td>
+                        <td id="row22_day" class="day_cells"></td>
+                        <td id="row22_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr23">
+                        <th class="row_th" id="row_th23">日<br>23</th>
+                        <td id="row23_morning" class="morning_cells"></td>
+                        <td id="row23_day" class="day_cells"></td>
+                        <td id="row23_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr24">
+                        <th class="row_th" id="row_th24">日<br>24</th>
+                        <td id="row24_morning" class="morning_cells"></td>
+                        <td id="row24_day" class="day_cells"></td>
+                        <td id="row24_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr25">
+                        <th class="row_th" id="row_th25">日<br>25</th>
+                        <td id="row25_morning" class="morning_cells"></td>
+                        <td id="row25_day" class="day_cells"></td>
+                        <td id="row25_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr26">
+                        <th class="row_th" id="row_th26">日<br>26</th>
+                        <td id="row26_morning" class="morning_cells"></td>
+                        <td id="row26_day" class="day_cells"></td>
+                        <td id="row26_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr27">
+                        <th class="row_th" id="row_th27">日<br>27</th>
+                        <td id="row27_morning" class="morning_cells"></td>
+                        <td id="row27_day" class="day_cells"></td>
+                        <td id="row27_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr28">
+                        <th class="row_th" id="row_th28">月<br>28</th>
+                        <td id="row28_morning" class="morning_cells"></td>
+                        <td id="row28_day" class="day_cells"></td>
+                        <td id="row28_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr29">
+                        <th class="row_th" id="row_th29">火<br>29</th>
+                        <td id="row29_morning" class="morning_cells"></td>
+                        <td id="row29_day" class="day_cells"></td>
+                        <td id="row29_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr30">
+                        <th class="row_th" id="row_th30">水<br>30</th>
+                        <td id="row30_morning" class="morning_cells"></td>
+                        <td id="row30_day" class="day_cells"></td>
+                        <td id="row30_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr31">
+                        <th class="row_th" id="row_th31">木<br>31</th>
+                        <td id="row31_morning" class="morning_cells"></td>
+                        <td id="row31_day" class="day_cells"></td>
+                        <td id="row31_night" class="night_cells"></td>
+                    </tr>
+                    <tr class="data_rows" id="data_tr32">
+                        <th class="row_th" id="row_th32">金<br>32</th>
+                        <td id="row32_morning" class="morning_cells"></td>
+                        <td id="row32_day" class="day_cells"></td>
+                        <td id="row32_night" class="night_cells"></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+
+        <script type="module" src="adjuster.js" ></script>
+    </body>
+</html>                                                                                                                                                             

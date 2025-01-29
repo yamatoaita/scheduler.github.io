@@ -1,0 +1,209 @@
+body{
+    background-color:rgb(244, 244, 193);
+    
+    
+    margin: 0; /* 余白をなくす */
+
+    
+}
+
+
+:root{
+    --explain_l : 50px;
+}
+
+.title{
+    color: rgba(0, 0, 0, 0.527);
+    font-family: Yu Mincho;
+    font-size: 100px;
+    
+    text-align: center;
+    position: relative;
+
+}
+@media(max-width: 480px){
+    .title{
+        font-size: 50px;
+        
+    }
+}
+
+.entry_place{
+
+    margin: 5vh 0vh 0vh;
+    height: 70px;
+}
+
+.explain{
+    color: rgba(0, 0, 0, 0.527);
+    font-family: Yu Mincho;
+    font-size: 40px;
+    text-align: center;
+    position: relative;
+    left: var(--explain_l);
+    
+}
+@media(max-width: 480px){
+    .explain{
+        top: 10px;
+        left: calc(var(--explain_l)+10);
+        font-size: 15px;
+    }
+}
+.entry{
+    
+    margin: 10vh 80vh 0vh;
+}
+.select{
+    margin: 10vh 80vh 0vh;
+    width: 170px;
+    text-align: center;
+}
+.entrybtn{
+    position: relative;
+    bottom: 25px;
+    margin: 0vh 105vh 0vh;
+}
+@media(max-width: 480px){
+    .entry{
+        height: 50px;
+        margin: 0vh 8vh 0vh;
+    }
+
+    .select{
+        height: 53px;
+
+        margin: 0vh 8vh 0vh;
+    }
+
+    .entrybtn{
+        width: 100px;
+        height: 50px;
+        bottom: 53px;
+        margin: 0vh 35vh 0vh;
+    }
+}
+
+.about{
+    overflow-y: scroll;
+    background-color: rgba(235, 235, 115, 0.377);
+    margin: 0vh 5vh 0vh;
+    
+    height: 300px;
+    border: 5px ridge #ccc; /* 視覚的に枠をつける */
+    
+}
+
+#page_index{
+    position: fixed;
+    visibility: hidden;
+}
+
+/*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
+
+
+th, td {
+    border: 1px solid black; /* 格子状の枠線を表示 */
+    padding: 8px; /* 内側の余白 */
+    text-align: center; /* 文字を中央揃え */
+    user-select: none;
+    
+}
+
+.data_rows td{
+    font-size: 30px;
+}
+
+.morning_cells{
+    background-color: rgba(203, 244, 230, 0.662);
+}
+.day_cells{
+    background-color: rgba(249, 210, 138, 0.583);
+}
+.night_cells{
+    background-color: rgba(0, 0, 0, 0.53);
+}
+
+th {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px;
+    border-bottom: 1px solid #E0E1E3;
+    border-right: 1px solid #E0E1E3;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+}
+
+.row_th{
+    font-size: 15px;
+    width: 30px;
+}
+
+#blank_header{
+    z-index: 2;
+}
+
+table {
+    border-collapse: collapse; /* 枠線を重ねてシンプルに */
+    width: 100%; /* 表を全体幅に対応させる */
+
+}
+
+.scrolled_table{
+    position: relative;
+    top: 5vh;
+    background-color: rgba(238, 238, 124, 0.711);
+    border: 5px ridge #ccc; /* 視覚的に枠をつける */
+    overflow-y: scroll;
+    height: 60vh;
+}
+
+
+.month_adjuster{
+    position: relative;
+    top: 38px;
+    background-color: white;
+    border: 5px ridge #ccc; /* 視覚的に枠をつける */
+    height: 30px;
+}
+
+.month{
+    position: absolute;
+    width: 100%;
+    text-align: center;    
+}
+.before{
+    position: absolute;
+}
+.next{
+    position: absolute;
+    right: 0px;
+
+}
+
+.enter{
+    margin: 50px 0px 0px;
+
+    position: relative;
+    top: 0px;
+    left: 25%;
+    width: 200px; /* 楕円の幅 */
+    height: 50px; /* 楕円の高さ */
+    background-color: rgba(104, 108, 28, 0.33); /* 背景色 */
+    color: white;
+    font-weight: bold;
+    border-radius: 50px 50px 50px 50px; /* 左右だけ丸くする */
+    display: flex; /* 中央寄せに便利な設定 */
+    justify-content: center; /* 水平方向中央寄せ */
+    align-items: center; /* 垂直方向中央寄せ */
+    text-align: center; /* テキストの中央揃え */
+}
+
+.user_index{
+    position: fixed;
+    top: 0px;
+    /*visibility: hidden;*/
+}
