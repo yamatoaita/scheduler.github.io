@@ -74,11 +74,15 @@ class SiteSyste{
 
     page_setting(){
         if(this.user_index == "admin"){
-            var element = document.body;
-            element.style.backgroundImage = "url('admin_wall_withtext.png')";
+            /*
+            backgroundImage = "url('admin_wall_withtext.png')";
             element.style.backgroundRepeat = "repeat"; // 繰り返しを防止
             element.style.backgroundSize = "cover"; // 画面全体に広げる
             element.style.backgroundPosition = "center"; // 中央に配置
+            画像を使いたいときの書き方
+            */
+            var element = document.body;
+            element.style.backgroundColor = `rgb(128, 212, 202)`;
             var text = "日程を編集する時は名前を入力してください<br>【例 : 貴方名前】<br><br>日程調整の結果を確認する時は【251日程照合】と入力してください";
             text = text.replace("【251日程照合】",`<span style="color: rgb(161, 16, 16); font-weight: bold;";><br>【日程照合】</span>`);
             text = text.replace("【例 : 貴方名前】",`<span style="color: rgb(161, 16, 16); font-weight: bold;";>【例 : 貴方名前】</span>`);
@@ -832,8 +836,8 @@ class SiteSyste{
             var JSON_data = JSON.stringify(this.MatuallySuitableDate_dict);
         }
         set(dbRef_data,JSON_data);
-        alert("送信が完了しました。\n日程調整画面を再読み込みします。")
-        this.target = this.data[1]
+        alert("送信が完了しました。\n日程照合画面へ遷移します。")
+        this.target = "日程照合";
         this.link()
     }
 }
