@@ -303,6 +303,9 @@ class SiteSyste{
     adjust_system(){
         //console.log("IN ADJUST SYS")
         try{
+            if(this.user_index=="admin"){
+                document.getElementById("explain").innerHTML = `都合のよい日を選択してください。\n`;
+            }
             this.get_data();
         }catch(error){
             alert(
