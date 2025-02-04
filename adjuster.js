@@ -711,14 +711,23 @@ class SiteSyste{
         var row_index =  row; 
         var column_index = column;
         console.log(`this is cell(${row_index+1},${column_index+1}) and index is ${this.data_dict[`${this.key_year}年${this.key_month}月`][row_index][column_index][1]}`)
-        if(target==""|target=="✕"){
-            current_cell.textContent = "〇";
-            this.data_dict[`${this.key_year}年${this.key_month}月`][row_index][column_index][0] = "〇";
-        }else{
-            current_cell.textContent = "✕";
-            this.data_dict[`${this.key_year}年${this.key_month}月`][row_index][column_index][0] = "✕";
-        }
         
+        const CELL_COLOR = window.getComputedStyle(cell).color;
+        var isEditable = false;
+        if(CELL_COLOR == 'rgb(0, 0, 0)'){
+            isEditable =  true;
+        }
+        console.log(`COLOR IS ${CELL_COLOR}, and boolean is ${isEditable}`);
+
+        if(isEditable){
+            if(target==""|target=="✕"){
+                current_cell.textContent = "〇";
+                this.data_dict[`${this.key_year}年${this.key_month}月`][row_index][column_index][0] = "〇";
+            }else{
+                current_cell.textContent = "✕";
+                this.data_dict[`${this.key_year}年${this.key_month}月`][row_index][column_index][0] = "✕";
+            }
+        }
 
         
         ////console.table(this.data_dict[`${key_year}年${key_month}月`]);
