@@ -328,7 +328,7 @@ class SiteSyste{
         }
         get(this.dbRef_userdata).then((snapshot) => {
             if (snapshot.exists()) {//パスワードが登録されていた場合
-                console.log(snapshot.val());
+                //console.log(snapshot.val());
                 this.data_dict = JSON.parse(snapshot.val());
             }  
         
@@ -347,7 +347,7 @@ class SiteSyste{
 
                 
                 this.make_admin_dict(); //管理者が互いに都合の良い日を集めたdictionary型を作る
-                
+                console.table(this.MatuallySuitableDate_dict[`2025年2月`])
                 this.set_panels();
             })
         })
@@ -388,7 +388,7 @@ class SiteSyste{
                     first_dict_flg = 0;
                 }
             }
-            console.table(this.admin_data);
+            //console.table(this.admin_data);
 
             var ref_cell_data = "";
             this.MatuallySuitableDate_dict = {};
@@ -527,6 +527,7 @@ class SiteSyste{
                 this.data_dict[`${this.key_year}年${this.key_month}月`] = this.data_set;
             }
 
+            this.add_MonthSwitchingEvent();
 
             this.add_BatchColumnSwitching();
             //一括列切り替えイベントを設置する。
@@ -534,11 +535,12 @@ class SiteSyste{
             this.add_CellClickEvent();
             //セルクリックイベントの設置
 
-            this.add_MonthSwitchingEvent();
-
-            
             this.set_RowLabels_BatchRowSwitching();
             //1列目。行ラベルを設定する。また、一括行切り替えイベントも設置する。
+  
+            
+
+
         }catch(error){
             alert(
                 "エラーが発生しました！ 會田までこれをコピペ（またはスクショ）してお知らせください。 \n" +
@@ -592,17 +594,26 @@ class SiteSyste{
     }
     
     add_CellClickEvent(){
+        const SELECTED_DATE = document.getElementById("month").textContent;
+        
+        const DATES_LIST = SELECTED_DATE.split("年");
+        DATES_LIST[1] = DATES_LIST[1].replace("月","");
+        
+        const CURRENT_MONTH_DATES = new Date(DATES_LIST[0],DATES_LIST[1]-1,0).getDate();
+
+        console.log(`valid row cnt is ${CURRENT_MONTH_DATES}`);
         var moring_cell = "";
         var day_cell = "";
         var night_cell = "";
 
-        for(let i = 1; i <= this.valid_row_cnt; i++){//Add click event
+        for(let i = 1; i <= CURRENT_MONTH_DATES; i++){//Add click event
             moring_cell = document.getElementById(`row${i}_morning`);
             day_cell = document.getElementById(`row${i}_day`);
             night_cell = document.getElementById(`row${i}_night`);
 
-           
+            console.log(` ${i}行目を表示。 `)
             moring_cell.addEventListener("click",(event)=>{
+                
                 var target_color = window.getComputedStyle(event.target).color;
                 //console.log(`cell name ${event.target.id}\ncolor is ${target_color}`);
                 if(target_color != this.invalid_cell_color && target_color != this.suitable_day_color){
@@ -625,12 +636,13 @@ class SiteSyste{
             
            
             night_cell.addEventListener("click",(event)=>{
+              
                 var target_color = window.getComputedStyle(event.target).color;
                 //console.log(`cell name ${event.target.id}\ncolor is ${target_color}`);
                 if(target_color != this.invalid_cell_color && target_color != this.suitable_day_color){
                     var id = event.target.id.match(/\d+/g).map(Number) -1
                     this.setting_event(event.target,2,id);
-                }   
+                }
             })
             
         }
@@ -657,7 +669,7 @@ class SiteSyste{
     set_RowLabels_BatchRowSwitching(){
         const CURRENT_MONTH_LABEL = document.getElementById("month");
         const CURRENT_DATE_LIST  = CURRENT_MONTH_LABEL.textContent.split("年");
-        console.table(CURRENT_DATE_LIST);
+        //console.table(CURRENT_DATE_LIST);
         var year = CURRENT_DATE_LIST[0];
         var month = CURRENT_DATE_LIST[1].replace("月","");
         var date = new Date(year,month,1);
@@ -665,7 +677,7 @@ class SiteSyste{
         var daysOfWeek = ["日","月","火","水","木","金","土"]
         var row_th = "";
         var month = date.getMonth();
-        this.valid_row_cnt = 0;
+
         for(let i = 1 ; i <= 32; i++){//setting A列
            
             if(date.getMonth() == month){
@@ -688,7 +700,7 @@ class SiteSyste{
                     this.setting_event(night_cell,2,id-1);
                 });
 
-                this.valid_row_cnt += 1;
+   
             }else{
                 row_th = document.getElementById(`row_th${i}`);
                 row_th.textContent = "";
@@ -707,7 +719,7 @@ class SiteSyste{
         var daysOfWeek = ["日","月","火","水","木","金","土"]
         var row_th = "";
         var month = date.getMonth();
-        this.valid_row_cnt = 0;
+
         for(let i = 1 ; i <= 32; i++){//setting A列
            
             if(date.getMonth() == month){
@@ -717,7 +729,7 @@ class SiteSyste{
                 ${i}`;
                
                 date.setDate(date.getDate() + 1);
-                this.valid_row_cnt += 1;
+    
             }else{
                 row_th = document.getElementById(`row_th${i}`);
                 row_th.textContent = "";
