@@ -527,8 +527,6 @@ class SiteSyste{
                 this.data_dict[`${this.key_year}年${this.key_month}月`] = this.data_set;
             }
 
-            this.set_RowLabels_BatchRowSwitching();
-            //1列目。行ラベルを設定する。また、一括行切り替えイベントも設置する。
 
             this.add_BatchColumnSwitching();
             //一括列切り替えイベントを設置する。
@@ -537,6 +535,10 @@ class SiteSyste{
             //セルクリックイベントの設置
 
             this.add_MonthSwitchingEvent();
+
+            
+            this.set_RowLabels_BatchRowSwitching();
+            //1列目。行ラベルを設定する。また、一括行切り替えイベントも設置する。
         }catch(error){
             alert(
                 "エラーが発生しました！ 會田までこれをコピペ（またはスクショ）してお知らせください。 \n" +
@@ -547,45 +549,6 @@ class SiteSyste{
         }
     }
 
-    set_RowLabels_BatchRowSwitching(){
-        var today = new Date();
-        var year = today.getFullYear();
-        var month = today.getMonth();
-        var date = new Date(year,month,1);
-
-        var daysOfWeek = ["日","月","火","水","木","金","土"]
-        var row_th = "";
-        var month = date.getMonth();
-        this.valid_row_cnt = 0;
-        for(let i = 1 ; i <= 32; i++){//setting A列
-           
-            if(date.getMonth() == month){
-                //console.log(`const month is ${month}, and current one is ${date.getMonth()}`)
-                row_th = document.getElementById(`row_th${i}`);
-                row_th.textContent = `${daysOfWeek[date.getDay()]}
-                ${i}`;
-                date.setDate(date.getDate() + 1);
-
-                row_th.addEventListener("click",(event)=>{//一気に一行切り替える
-                    var cell = event.target;
-                    var id = cell.id.match(/\d+/g).map(Number);
-
-                    var morning_cell = document.getElementById(`row${id}_morning`);
-                    var day_cell = document.getElementById(`row${id}_day`);
-                    var night_cell = document.getElementById(`row${id}_night`);
-
-                    this.setting_event(morning_cell,0,id-1);
-                    this.setting_event(day_cell,1,id-1);
-                    this.setting_event(night_cell,2,id-1);
-                });
-
-                this.valid_row_cnt += 1;
-            }else{
-                row_th = document.getElementById(`row_th${i}`);
-                row_th.textContent = "";
-            }
-        }
-    }
 
     add_BatchColumnSwitching(){
         //列一括切り替え
@@ -691,6 +654,76 @@ class SiteSyste{
         })
     }
 
+    set_RowLabels_BatchRowSwitching(){
+        const CURRENT_MONTH_LABEL = document.getElementById("month");
+        const CURRENT_DATE_LIST  = CURRENT_MONTH_LABEL.textContent.split("年");
+        console.table(CURRENT_DATE_LIST);
+        var year = CURRENT_DATE_LIST[0];
+        var month = CURRENT_DATE_LIST[1].replace("月","");
+        var date = new Date(year,month,1);
+
+        var daysOfWeek = ["日","月","火","水","木","金","土"]
+        var row_th = "";
+        var month = date.getMonth();
+        this.valid_row_cnt = 0;
+        for(let i = 1 ; i <= 32; i++){//setting A列
+           
+            if(date.getMonth() == month){
+                //console.log(`const month is ${month}, and current one is ${date.getMonth()}`)
+                row_th = document.getElementById(`row_th${i}`);
+                row_th.textContent = `${daysOfWeek[date.getDay()]}
+                ${i}`;
+                date.setDate(date.getDate() + 1);
+
+                row_th.addEventListener("click",(event)=>{//一気に一行切り替える
+                    var cell = event.target;
+                    var id = cell.id.match(/\d+/g).map(Number);
+
+                    var morning_cell = document.getElementById(`row${id}_morning`);
+                    var day_cell = document.getElementById(`row${id}_day`);
+                    var night_cell = document.getElementById(`row${id}_night`);
+
+                    this.setting_event(morning_cell,0,id-1);
+                    this.setting_event(day_cell,1,id-1);
+                    this.setting_event(night_cell,2,id-1);
+                });
+
+                this.valid_row_cnt += 1;
+            }else{
+                row_th = document.getElementById(`row_th${i}`);
+                row_th.textContent = "";
+            }
+        }
+    }
+
+    setRowLabels(){
+        const CURRENT_MONTH_LABEL = document.getElementById("month");
+        const CURRENT_DATE_LIST  = CURRENT_MONTH_LABEL.textContent.split("年");
+        console.table(CURRENT_DATE_LIST);
+        var year = CURRENT_DATE_LIST[0];
+        var month = CURRENT_DATE_LIST[1].replace("月","");
+        var date = new Date(year,month-1,1);
+
+        var daysOfWeek = ["日","月","火","水","木","金","土"]
+        var row_th = "";
+        var month = date.getMonth();
+        this.valid_row_cnt = 0;
+        for(let i = 1 ; i <= 32; i++){//setting A列
+           
+            if(date.getMonth() == month){
+                //console.log(`const month is ${month}, and current one is ${date.getMonth()}`)
+                row_th = document.getElementById(`row_th${i}`);
+                row_th.textContent = `${daysOfWeek[date.getDay()]}
+                ${i}`;
+               
+                date.setDate(date.getDate() + 1);
+                this.valid_row_cnt += 1;
+            }else{
+                row_th = document.getElementById(`row_th${i}`);
+                row_th.textContent = "";
+            }
+        }
+    }
     //-------------------------------------------------------------------------
 
     setting_event(cell, column, row){
@@ -745,6 +778,7 @@ class SiteSyste{
         target_date.setMonth(target_date.getMonth()-1);
     
         month.textContent = `${target_date.getFullYear()}年${target_date.getMonth()+1}月`;
+        this.setRowLabels();
         this.key_year = target_date.getFullYear();
         this.key_month = target_date.getMonth()+1;
         if(this.user_index!="admin"){
@@ -778,6 +812,7 @@ class SiteSyste{
         target_date.setMonth(target_date.getMonth()+1);
 
         month.textContent = `${target_date.getFullYear()}年${target_date.getMonth()+1}月`;
+        this.setRowLabels();
         this.key_year = target_date.getFullYear();
         this.key_month = target_date.getMonth()+1;
         if(this.user_index!="admin"){
@@ -805,6 +840,8 @@ class SiteSyste{
     }
 
     set_data(){
+
+
         var target_cell = "";
         var c_list = ["morning","day","night"]
         var value = "";
@@ -838,6 +875,8 @@ class SiteSyste{
                 }
             }
         }
+
+       
     }
 
     send_data(){
