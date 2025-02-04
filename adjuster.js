@@ -899,9 +899,16 @@ class SiteSyste{
             var JSON_data = JSON.stringify(this.MatuallySuitableDate_dict);
         }
         set(dbRef_data,JSON_data);
-        alert("送信が完了しました。\n日程照合画面へ遷移します。")
-        this.target = "日程照合";
-        this.link()
+        if(this.user_index=="admin"){
+            alert("送信が完了しました。\n日程照合画面へ遷移します。")
+            this.target = "日程照合";
+            this.link()
+        }else{
+            alert("入力ありがとうございました。\ngoogle.comへ遷移します。");
+             window.location.href = "html://google.com";
+        }
+
+    
     }
 }
 
