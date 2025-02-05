@@ -900,7 +900,7 @@ class SiteSyste{
         }
         set(dbRef_data,JSON_data);
 
-        alert("changed");
+       
         if(this.user_index=="admin"){
             alert("送信が完了しました。\n日程照合画面へ遷移します。")
             this.target = "日程照合";
