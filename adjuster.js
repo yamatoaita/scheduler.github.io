@@ -907,7 +907,7 @@ class SiteSyste{
             this.link()
         }else{
             alert("入力ありがとうございました。\ngoogle.comへ遷移します。");
-            window.location.href = "html://google.com";
+            window.location.href = "https://google.com";
         }
 
     
